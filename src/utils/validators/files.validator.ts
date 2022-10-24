@@ -11,9 +11,11 @@ import path from 'path'
  */
 const validateGetFileByName = (req: Request, res: Response, next: NextFunction): any => {
     const { name } = req.params
-    const basePath = path.join(__dirname, '..', '..', '..', 'storage')
-    const fileExists = fs.existsSync(`${basePath}/${name}`)
+    const fileBath = path.join(__dirname, '..', '..', '..', 'storage',`${name}`)
+    
+    const fileExists = fs.existsSync(fileBath)
     if (!fileExists)
+    
         return res.status(404).send("File not found")
 
     next()
